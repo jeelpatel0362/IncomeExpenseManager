@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("kapt")
 }
+
 
 android {
     namespace = "com.example.incomeexpensemanager"
@@ -48,5 +50,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("androidx.room:room-runtime:2.7.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
-
+    annotationProcessor("androidx.room:room-compiler:2.7.1")
+    kapt("androidx.room:room-compiler:2.7.1")
 }

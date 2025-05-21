@@ -3,6 +3,7 @@ package com.example.incomeexpensemanager.ui
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -29,11 +30,27 @@ class AddTransaction : AppCompatActivity() {
         val title = findViewById<EditText>(R.id.et_title)
         val description = findViewById<EditText>(R.id.et_description)
         val amount = findViewById<EditText>(R.id.et_amount)
-        val type = findViewById<Spinner>(R.id.spinner_type)
-        val category = findViewById<Spinner>(R.id.spinner_category)
+        val typeSpinner = findViewById<Spinner>(R.id.spinner_type)
+        val categorySpinner = findViewById<Spinner>(R.id.spinner_category)
         val date = findViewById<EditText>(R.id.et_date)
         val time = findViewById<EditText>(R.id.et_time)
         val save = findViewById<Button>(R.id.btn_save)
+
+        val typeAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.transaction_types,
+            android.R.layout.simple_spinner_item
+        )
+        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        typeSpinner.adapter = typeAdapter
+
+        val categoryAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.transaction_categories,
+            android.R.layout.simple_spinner_item
+        )
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        categorySpinner.adapter = categoryAdapter
 
         date.setOnClickListener {
             val calendar = Calendar.getInstance()
@@ -63,14 +80,33 @@ class AddTransaction : AppCompatActivity() {
         }
 
         save.setOnClickListener {
+            val titleText = title.text.toString()
+            val descriptionText = description.text.toString()
+            val amountText = amount.text.toString()
+            val dateText = date.text.toString()
+            val timeText = time.text.toString()
+            val typeText = typeSpinner.selectedItem?.toString()
+            val categoryText = categorySpinner.selectedItem?.toString()
+
+            if (titleText.isBlank() || amountText.isBlank() || typeText.isNullOrBlank() || categoryText.isNullOrBlank() || dateText.isBlank() || timeText.isBlank()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val amountValue = amountText.toDoubleOrNull()
+            if (amountValue == null) {
+                Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val newTransaction = Transaction(
-                title = title.text.toString(),
-                description = description.text.toString(),
-                amount = amount.text.toString().toDouble(),
-                type = type.selectedItem.toString(),
-                category = category.selectedItem.toString(),
-                date = date.text.toString(),
-                time = time.text.toString()
+                title = titleText,
+                description = descriptionText,
+                amount = amountValue,
+                type = typeText,
+                category = categoryText,
+                date = dateText,
+                time = timeText
             )
 
             lifecycleScope.launch {
@@ -81,5 +117,6 @@ class AddTransaction : AppCompatActivity() {
                 }
             }
         }
+
     }
 }

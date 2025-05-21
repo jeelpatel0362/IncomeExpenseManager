@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">IncomeExpense Manager</string>
+
+    <string-array name="transaction_types">
+        <item>Income</item>
+        <item>Expense</item>
+    </string-array>
+
+    <string-array name="months_array">
+        <item>All</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="transaction_categories">
+        <item>All</item>
+        <item>Food</item>
+        <item>Transport</item>
+        <item>Shopping</item>
+        <item>Health</item>
+        <item>Salary</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>
