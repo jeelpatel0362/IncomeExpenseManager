@@ -25,8 +25,8 @@ A simple and intuitive **Android application** to manage your income and expense
 
 <img src="https://github.com/user-attachments/assets/754ab294-562f-44d4-a297-7d95124f98ea" width="200"/>
 <img src="https://github.com/user-attachments/assets/1d327963-5292-4bed-b6c4-4a6caa4295de" width="200"/>
-<img src="https://github.com/user-attachments/assets/abfe54f3-d587-415a-b8cc-542c0a6c8e78" width="200"/>
 <img src="https://github.com/user-attachments/assets/d02c1cb2-1698-404a-96ea-a32a4fa90eeb" width="200"/>
+<img src="https://github.com/user-attachments/assets/abfe54f3-d587-415a-b8cc-542c0a6c8e78" width="200"/>
 <img src="https://github.com/user-attachments/assets/adc98bde-5e1b-42bb-b22b-6f21d8918247" width="200"/>
 
 ## Demo video
