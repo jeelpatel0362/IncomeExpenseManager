@@ -76,7 +76,7 @@ class UpdateDeleteScreen : AppCompatActivity() {
             )
 
             lifecycleScope.launch {
-                db.transactionDao().update(updated)
+                db.transactionDao().update(it)
                 runOnUiThread {
                     Toast.makeText(this@UpdateDeleteScreen, "Transaction updated", Toast.LENGTH_SHORT).show()
                     setResult(RESULT_OK)
@@ -89,7 +89,7 @@ class UpdateDeleteScreen : AppCompatActivity() {
     private fun deleteTransaction() {
         transaction?.let {
             lifecycleScope.launch {
-                db.transactionDao().delete(it)
+                db.transactionDao().delete(transaction = it)
                 runOnUiThread {
                     Toast.makeText(this@UpdateDeleteScreen, "Transaction deleted", Toast.LENGTH_SHORT).show()
                     setResult(RESULT_OK)

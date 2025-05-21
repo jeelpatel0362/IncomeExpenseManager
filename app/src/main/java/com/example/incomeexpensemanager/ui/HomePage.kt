@@ -31,7 +31,7 @@ class HomePage : AppCompatActivity() {
         val btnAdd = findViewById<Button>(R.id.btn_add)
 
         rvTransactions.layoutManager = LinearLayoutManager(this)
-        adapter = TransactionAdapter(this, emptyList())
+        adapter = TransactionAdapter(this@HomePage, emptyList())
         rvTransactions.adapter = adapter
 
         db.transactionDao().getAllTransactions().observe(this) { transactions ->
@@ -95,7 +95,8 @@ class HomePage : AppCompatActivity() {
 
         if (resultCode == RESULT_OK) {
             db.transactionDao().getAllTransactions().observe(this) { transactions ->
-                adapter.updateList(transactions)
+                transactionList = transactions
+                adapter.updateList(transactionList)
                 updateTotals(transactions)
             }
         }
